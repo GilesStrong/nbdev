@@ -2,6 +2,61 @@
 
 <!-- do not remove -->
 
+## 1.1.14
+
+### New Features
+
+- Allow for a one-time only (potentially) .py -> .ipynb generation ([#369](https://github.com/fastai/nbdev/issues/369))
+  - Goal is to allow for quick and easy use/conversion from non-nbdev repositories into nbdev repositories. Will be looking into this
+
+### Bugs Squashed
+
+- After 'conda install -c fastai nbdev', an error "‘HTMLExporter’ object has no attribute ‘template_path’" occurred. ([#431](https://github.com/fastai/nbdev/issues/431))
+  - ```
+converting: /mnt/c/Users/drago/Documents/jupyter/young/00_core.ipynb
+‘HTMLExporter’ object has no attribute ‘template_path’
+‘HTMLExporter’ object has no attribute ‘template_path’
+```
+as mentioned in https://forums.fast.ai/t/htmlexporter-object-has-no-attribute-template-path/80775
+
+That's because the Anaconda's default nbdev version is 0.2.40
+
+' pip3 install -U nbdev' fixed that.
+
+```
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Collecting nbdev
+
+...
+
+Installing collected packages: nbconvert, nbdev
+  Attempting uninstall: nbconvert
+    Found existing installation: nbconvert 6.0.7
+    Uninstalling nbconvert-6.0.7:
+      Successfully uninstalled nbconvert-6.0.7
+  Attempting uninstall: nbdev
+    Found existing installation: nbdev 0.2.40
+    Uninstalling nbdev-0.2.40:
+      Successfully uninstalled nbdev-0.2.40
+
+...
+
+Successfully installed nbconvert-6.0.7 nbdev-1.1.12
+(base) ➜  young git:(master) ✗ nbdev_build_lib
+Converted 00_core.ipynb.
+Converted index.ipynb.
+(base) ➜  young git:(master) ✗ nbdev_build_docs
+converting: /mnt/c/Users/drago/Documents/jupyter/young/00_core.ipynb
+converting: /mnt/c/Users/drago/Documents/jupyter/young/index.ipynb
+converting /mnt/c/Users/drago/Documents/jupyter/young/index.ipynb to README.md
+(base) ➜  young git:(master) ✗
+```
+
+When I run 'pip3 install nbdev', it not worked on ubuntu20.04 under wsl2. So I install nbdev by install anaconda first, then use 'conda install -c fastai nbdev', it succeed. and then because of default nbdev version is 0.2.40 in conda, an error "'HTMLExporter' object has no attribute 'template_path'" occured. But 'pip3 install -U nbdev' fixed that. 
+
+Strongly suggest everyone should run 'pip3 install -U nbdev' after install nbdev by anaconda.
+
+
 ## 1.1.13
 
 ### New Features
